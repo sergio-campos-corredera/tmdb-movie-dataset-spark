@@ -63,7 +63,7 @@ spark-submit --class org.sergiocc.tmdb.job.GenreRankingJob tmdb-movie-dataset-sp
 This table contains historical data aggregated per genre, calculating weighted averaged ratings. The table stores all 
 genre ratings per day accumulating all movies rated until processing date. A transformation example is shown below:
 
-![alt text](img/transformation_example.png "Transformation example")
+![alt text](./img/transformation_example.png "Transformation example")
 
 Output table columns are shown below:
 
