@@ -20,7 +20,7 @@ trait GenreRatingTransformation {
   private val COL_VOTE_COUNT = "vote_count"
   private val COL_VOTE_AVERAGE = "vote_average"
   private val COL_WEIGHT = "weight"
-  
+
   private val CHAR_DOUBLE_QUOTE = "\""
 
   case class GenresArray(genresList: List[(Long, String)])

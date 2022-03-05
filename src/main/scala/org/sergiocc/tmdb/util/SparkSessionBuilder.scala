@@ -29,7 +29,6 @@ object SparkSessionBuilder {
       .config("spark.locality.wait", "0")
       .config("spark.shuffle.file.buffer", "64k")
       .config("spark.sql.autoBroadcastJoinThreshold", "-1")
-      .config("spark.sql.legacy.allowCreatingManagedTableUsingNonemptyLocation",TRUE)
       .getOrCreate()
 
     session.sparkContext.hadoopConfiguration.set("mapreduce.input.fileinputformat.input.dir.recursive", TRUE)
