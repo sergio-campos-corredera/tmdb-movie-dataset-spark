@@ -12,7 +12,7 @@ Last version generated: 2.0.0
 
  - Java 11
  - Scala 2.12
- - SBT 1.6
+ - SBT 1.6.2
  - Spark 3.1.3
 
 ## SBT Lifecycle
@@ -35,7 +35,7 @@ sbt clean test
 sbt clean assembly
 ```
 
-Output package located at: `./target/scala-2.12/tmdb-movie-dataset-spark_2.12-<version>.jar`
+Output package located at: `./target/scala-2.12/tmdb-movie-dataset-spark-assembly-2.0.0.jar`
 
 ### Scoverage
 
@@ -88,7 +88,7 @@ Output table columns are shown below:
 | vote_count   | double      | Number of total votes per genre until date.                |
 | vote_average | integer     | Weighted average vote rating per genre until date.         |
 
-# Windows problems
+# Windows Hadopp issues
 If project it is being executed in Windows, be aware that it is necessary to install native libraries before proceed.
 More info can be found in [official documentation](https://cwiki.apache.org/confluence/display/HADOOP2/WindowsProblems).
 Winutils can be downloaded [here](https://github.com/cdarlint/winutils).
