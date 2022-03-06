@@ -11,16 +11,17 @@ import org.json.simple.parser.JSONParser
 
 trait GenreRatingTransformation {
 
-  private val COL_GENRES = "genres"
-  private val COL_RELEASE_DATE = "release_date"
-  private val COL_MAX_DATE = "max_date"
-  private val COL_DATE = "date"
-  private val COL_GENRE_ID = "genre_id"
-  private val COL_GENRE_NAME = "genre_name"
-  private val COL_VOTE_COUNT = "vote_count"
-  private val COL_VOTE_AVERAGE = "vote_average"
-  private val COL_WEIGHT = "weight"
-  
+  val COL_GENRES = "genres"
+  val COL_RELEASE_DATE = "release_date"
+  val COL_MAX_DATE = "max_date"
+  val COL_DATE = "date"
+  val COL_YEAR = "year"
+  val COL_GENRE_ID = "genre_id"
+  val COL_GENRE_NAME = "genre_name"
+  val COL_VOTE_COUNT = "vote_count"
+  val COL_VOTE_AVERAGE = "vote_average"
+  val COL_WEIGHT = "weight"
+
   private val CHAR_DOUBLE_QUOTE = "\""
 
   case class GenresArray(genresList: List[(Long, String)])
@@ -113,6 +114,16 @@ trait GenreRatingTransformation {
       .groupBy(COL_DATE, COL_GENRE_ID, COL_GENRE_NAME)
       .agg(sum(COL_VOTE_COUNT).as(COL_VOTE_COUNT),
         sum(COL_VOTE_AVERAGE).as(COL_VOTE_AVERAGE))
+  }
+
+  /**
+   * Method which add column YEAR, the one to be used as partitioning column.
+   * @param spark   Spark session to use.
+   * @param df      Data frame with filled days.
+   * @return        A dataframe with column YEAR.
+   */
+  def trfAddYear(spark: SparkSession) (df: DataFrame): DataFrame = {
+    df.withColumn(COL_YEAR, (col(COL_DATE) / 10000).cast(IntegerType))
   }
 
 }

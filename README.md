@@ -4,42 +4,55 @@ A sample spark project for processing The Movie Dataset.
 
 ---
 
-Last version generated: 1.0.0
+Last version generated: 2.0.0
 
 ---
 
 ## Prerequisites
 
- - Java 8
- - Scala 2.11
- - Maven 3
- - Spark 2.4.2
+ - Java 11
+ - Scala 2.12
+ - SBT 1.6.2
+ - Spark 3.1.3
 
-## Maven Lifecycle
+## SBT Lifecycle
 
 ### Compile
 
 ```bash
-mvn clean install
+sbt clean compile
 ```
 
 ### Test
 
 ```bash
-mvn clean test
+sbt clean test
 ```
+
+### Package generation
+
+```bash
+sbt clean assembly
+```
+
+Output package located at: `./target/scala-2.12/tmdb-movie-dataset-spark-assembly-2.0.0.jar`
 
 ### Scoverage
 
 ```bash
-mvn clean scoverage:report
+sbt clean coverage test
+sbt coverageReport
 ```
+
+Output report located at: `./target/scala-2.12/scoverage-report/index.html` 
 
 ### Scala Style
 
 ```bash
-mvn clean scalastyle:check
+sbt scalastyle
 ```
+
+Output report located at: `./target/scalastyle-result.xml`
 
 ## Input data
 
@@ -50,9 +63,9 @@ https://www.kaggle.com/tmdb/tmdb-movie-metadata#tmdb_5000_movies.csv
 ## Run
 
 ```bash
-spark-submit --class org.sergiocc.tmdb.job.GenreRankingJob tmdb-movie-dataset-spark-1.0.0.jar \
+spark-submit --class org.sergiocc.tmdb.job.GenreRankingJob ./target/scala-2.12/tmdb-movie-dataset-spark-assembly-2.0.0.jar \
              --input-table ./inputData/tmdb_5000_movies.csv \
-             --output-table /tmp/tmdb/tbl-genre-ranking \
+             --output-table ./target/tmdb/tbl-genre-ranking \
              --output-table-name tbl_genre_ranking
 ```
 
@@ -74,3 +87,8 @@ Output table columns are shown below:
 | genre_name   | double      | Genre name.                                                |
 | vote_count   | double      | Number of total votes per genre until date.                |
 | vote_average | integer     | Weighted average vote rating per genre until date.         |
+
+# Windows Hadopp issues
+If project it is being executed in Windows, be aware that it is necessary to install native libraries before proceed.
+More info can be found in [official documentation](https://cwiki.apache.org/confluence/display/HADOOP2/WindowsProblems).
+Winutils can be downloaded [here](https://github.com/cdarlint/winutils).

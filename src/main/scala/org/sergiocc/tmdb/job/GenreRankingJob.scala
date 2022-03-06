@@ -30,8 +30,9 @@ object GenreRankingJob extends GenreRatingParameters
       .transform(trfFlatteningGenre(spark))
       .transform(trfFillMissingDays(spark))
       .transform(trfAggregatingGenre(spark))
+      .transform(trfAddYear(spark))
 
-    writeToDatabase(spark, "date", 1, params, df)
+    writeToDatabase(spark, COL_YEAR, 1, params, df)
   }
 
 

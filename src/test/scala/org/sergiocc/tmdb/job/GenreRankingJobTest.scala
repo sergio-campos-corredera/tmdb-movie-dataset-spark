@@ -1,15 +1,15 @@
 package org.sergiocc.tmdb.job
 
 import java.io.File
-
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.col
-import org.scalatest.{BeforeAndAfter, FunSuite}
+import org.scalatest.BeforeAndAfter
+import org.scalatest.funsuite._
 import org.sergiocc.tmdb.util.{AppLogger, SparkSessionBuilder}
 
 import scala.reflect.io.Directory
 
-class GenreRankingJobTest extends FunSuite
+class GenreRankingJobTest extends AnyFunSuite
   with BeforeAndAfter
   with AppLogger {
 
