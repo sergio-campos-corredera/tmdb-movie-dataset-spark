@@ -80,15 +80,16 @@ genre ratings per day accumulating all movies rated until processing date. A tra
 
 Output table columns are shown below:
 
-| Column name  | Column type | Description                                                |
-|--------------|-------------|------------------------------------------------------------|
-| date         | integer     | Date, in format YYYYMMDD. Column used as partition column. |
-| genre_id     | string      | Genre ID.                                                  |
-| genre_name   | double      | Genre name.                                                |
-| vote_count   | double      | Number of total votes per genre until date.                |
-| vote_average | integer     | Weighted average vote rating per genre until date.         |
+| Column name  | Column type | Description                                            |
+|--------------|-------------|--------------------------------------------------------|
+| year         | integer     | Year, in format YYYY. Column used as partition column. |
+| date         | integer     | Date, in format YYYYMMDD.                              |
+| genre_id     | string      | Genre ID.                                              |
+| genre_name   | double      | Genre name.                                            |
+| vote_count   | double      | Number of total votes per genre until date.            |
+| vote_average | integer     | Weighted average vote rating per genre until date.     |
 
-# Windows Hadopp issues
+# Windows Hadoop issues
 If project it is being executed in Windows, be aware that it is necessary to install native libraries before proceed.
 More info can be found in [official documentation](https://cwiki.apache.org/confluence/display/HADOOP2/WindowsProblems).
 Winutils can be downloaded [here](https://github.com/cdarlint/winutils).
